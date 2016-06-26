@@ -3,9 +3,12 @@ package com.akshaykhole.makelist;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
+import com.akshaykhole.makelist.adapters.TasksIndexAdapter;
 import com.akshaykhole.makelist.models.Task;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
@@ -24,6 +27,13 @@ public class TasksIndexActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tasks_index);
         configureDatabase();
         createDummyTask();
+        populateTasks();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     private void createDummyTask() {
@@ -44,8 +54,21 @@ public class TasksIndexActivity extends AppCompatActivity {
         for(Task task : tasks) {
             Log.d("REALM=====>", task.getText());
         }
+    }
 
-        realm.close();
+    private void populateTasks() {
+        RealmQuery<Task> query = realm.where(Task.class);
+        RealmResults<Task> tasks = query.findAll();
+
+        ArrayList<Task> tasksArrayList =  new ArrayList<Task>();
+
+        for(Task t : tasks) {
+            tasksArrayList.add(t);
+        }
+
+        TasksIndexAdapter tasksIndexAdapter = new TasksIndexAdapter(this, tasksArrayList);
+        ListView tasksIndexListView = (ListView) findViewById(R.id.tasksIndexListView);
+        tasksIndexListView.setAdapter(tasksIndexAdapter);
     }
 
     private void configureDatabase() {
