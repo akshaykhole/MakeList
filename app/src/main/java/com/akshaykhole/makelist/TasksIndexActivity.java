@@ -3,7 +3,9 @@ package com.akshaykhole.makelist;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.akshaykhole.makelist.adapters.TasksIndexAdapter;
 import com.akshaykhole.makelist.models.Task;
@@ -34,6 +36,10 @@ public class TasksIndexActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+    }
+
+    public void createNewTask(View view) {
+        Toast.makeText(TasksIndexActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
     }
 
     private void createDummyTask() {

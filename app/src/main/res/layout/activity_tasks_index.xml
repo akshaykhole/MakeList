@@ -28,5 +28,7 @@
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignParentEnd="false"
+        android:id="@+id/tasks_index_add_task_button"
+        android:onClick="createNewTask"/>
 </RelativeLayout>
