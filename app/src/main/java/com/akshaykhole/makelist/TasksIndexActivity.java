@@ -23,9 +23,13 @@ public class TasksIndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks_index);
         configureDatabase();
-        realm = Realm.getDefaultInstance();
+        createDummyTask();
+    }
 
+    private void createDummyTask() {
+        realm = Realm.getDefaultInstance();
         realm.beginTransaction();
+
         Task t = realm.createObject(Task.class);
         t.setId(UUID.randomUUID().toString());
         t.setText("Fetch bread " + UUID.randomUUID().toString());
@@ -37,7 +41,6 @@ public class TasksIndexActivity extends AppCompatActivity {
 
         RealmQuery<Task> query = realm.where(Task.class);
         RealmResults<Task> tasks = query.findAll();
-
         for(Task task : tasks) {
             Log.d("REALM=====>", task.getText());
         }

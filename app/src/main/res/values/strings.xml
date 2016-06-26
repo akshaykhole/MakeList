@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MakeList</string>
+    <string name="tasks_index_task_description">Task Description string goes here</string>
+    <string name="tasks_index_task_details">Task details like due date, priority, etc</string>
 </resources>

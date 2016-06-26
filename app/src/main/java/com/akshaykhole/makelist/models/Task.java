@@ -18,6 +18,7 @@ public class Task extends RealmObject {
     private String assignedBy;
     private Boolean complete;
 
+    // Public getters and setters for attributes
     public String getId() {
         return id;
     }
