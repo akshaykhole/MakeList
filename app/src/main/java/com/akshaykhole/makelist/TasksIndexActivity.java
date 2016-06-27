@@ -49,7 +49,7 @@ public class TasksIndexActivity extends AppCompatActivity {
         Task t = realm.createObject(Task.class);
         t.setId(UUID.randomUUID().toString());
         t.setText("Fetch bread " + UUID.randomUUID().toString());
-        t.setPriority("high");
+        t.setPriority("low");
         t.setAssignedBy("self");
         t.setDueDate(new Date());
         t.setComplete(Boolean.FALSE);
