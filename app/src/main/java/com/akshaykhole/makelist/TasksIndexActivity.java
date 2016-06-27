@@ -1,5 +1,6 @@
 package com.akshaykhole.makelist;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,10 @@ public class TasksIndexActivity extends AppCompatActivity {
     }
 
     public void createNewTask(View view) {
+        FragmentManager fm = getSupportFragmentManager();
+        TaskFormFragment tff = TaskFormFragment.newInstance();
+        tff.show(fm, "task_form");
+
         Toast.makeText(TasksIndexActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
     }
 
