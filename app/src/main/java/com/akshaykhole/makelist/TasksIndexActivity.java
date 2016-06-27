@@ -1,5 +1,6 @@
 package com.akshaykhole.makelist;
 
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,8 +22,14 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class TasksIndexActivity extends AppCompatActivity {
+public class TasksIndexActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
     private Realm realm;
+    public TasksIndexAdapter tasksIndexAdapter;
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        populateTasks();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +82,7 @@ public class TasksIndexActivity extends AppCompatActivity {
             tasksArrayList.add(t);
         }
 
-        TasksIndexAdapter tasksIndexAdapter = new TasksIndexAdapter(this, tasksArrayList);
+        tasksIndexAdapter = new TasksIndexAdapter(this, tasksArrayList);
         ListView tasksIndexListView = (ListView) findViewById(R.id.tasksIndexListView);
         tasksIndexListView.setAdapter(tasksIndexAdapter);
     }

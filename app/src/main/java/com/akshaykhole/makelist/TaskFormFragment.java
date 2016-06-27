@@ -1,5 +1,7 @@
 package com.akshaykhole.makelist;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -76,6 +78,7 @@ public class TaskFormFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 getDialog().dismiss();
+
             }
         });
     }
@@ -90,5 +93,15 @@ public class TaskFormFragment extends DialogFragment {
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
         // Call super onResume after sizing
         super.onResume();
+    }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Log.d("DEBUG-->", "DISMISSED");
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        }
     }
 }
