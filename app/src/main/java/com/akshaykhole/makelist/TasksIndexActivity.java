@@ -43,7 +43,6 @@ public class TasksIndexActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         TaskFormFragment tff = TaskFormFragment.newInstance();
         tff.show(fm, "task_form");
-        Toast.makeText(TasksIndexActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
     }
 
     private void createDummyTask() {

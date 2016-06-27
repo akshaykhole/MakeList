@@ -3,10 +3,12 @@ package com.akshaykhole.makelist;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -15,6 +17,8 @@ import android.widget.EditText;
 
 public class TaskFormFragment extends DialogFragment {
     private EditText description;
+    private Button btnDone;
+    private Button btnCancel;
 
     public TaskFormFragment() { }
 
@@ -27,12 +31,29 @@ public class TaskFormFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.task_form, container);
+        View view = inflater.inflate(R.layout.task_form, container);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnDone = (Button) view.findViewById(R.id.btnTaskFormDone);
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DEBUG--->", "SAVE !!");
+            }
+        });
+
+        btnCancel = (Button) view.findViewById(R.id.btnTaskFormCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DEBUG-->", "CANCEL");
+            }
+        });
     }
 
     @Override
