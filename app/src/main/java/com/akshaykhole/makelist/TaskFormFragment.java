@@ -10,12 +10,21 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.akshaykhole.makelist.models.Task;
+
+import java.util.Date;
+import java.util.UUID;
+
+import io.realm.Realm;
 
 /**
  * Created by akshay on 6/26/16.
  */
 
 public class TaskFormFragment extends DialogFragment {
+    private Realm realm;
     private EditText description;
     private Button btnDone;
     private Button btnCancel;
@@ -43,7 +52,22 @@ public class TaskFormFragment extends DialogFragment {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("DEBUG--->", "SAVE !!");
+                description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
+
+                realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                Task t = realm.createObject(Task.class);
+                t.setId(UUID.randomUUID().toString());
+                t.setText(description.getText().toString());
+                t.setPriority("low");
+                t.setAssignedBy("self");
+                t.setDueDate(new Date());
+                t.setComplete(Boolean.FALSE);
+                realm.commitTransaction();
+
+                Toast.makeText(getActivity(), "SUCCESS!",
+                        Toast.LENGTH_SHORT).show();
+                getDialog().dismiss();
             }
         });
 
@@ -51,7 +75,7 @@ public class TaskFormFragment extends DialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("DEBUG-->", "CANCEL");
+                getDialog().dismiss();
             }
         });
     }
