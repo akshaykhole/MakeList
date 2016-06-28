@@ -1,6 +1,7 @@
 package com.akshaykhole.makelist;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -67,6 +69,10 @@ public class TaskFormFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        description = (EditText) view.findViewById(R.id.editDescriptionInput);
+        description.setSelection(description.getText().length());
+        description.requestFocus();
 
         // Populate Priority Dropdown
         String[] priorityListItems = new String[] { "High", "Medium", "Low" };
@@ -173,6 +179,8 @@ public class TaskFormFragment extends DialogFragment {
 
         description = (EditText) view.findViewById(R.id.editDescriptionInput);
         description.setText(task.getText());
+        description.setSelection(description.getText().length());
+        description.requestFocus();
 
         taskFormDatePicker = (DatePicker) view.findViewById(R.id.taskFormDatePicker);
         Date date = task.getDueDate();
