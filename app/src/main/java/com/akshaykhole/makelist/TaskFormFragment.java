@@ -36,9 +36,11 @@ public class TaskFormFragment extends DialogFragment {
     private Button btnCancel;
     private Spinner prioritySpinner;
 
+    private boolean editable = Boolean.FALSE;
+
     public TaskFormFragment() { }
 
-    public static TaskFormFragment newInstance() {
+    public static TaskFormFragment newInstance(Bundle args) {
         TaskFormFragment frag = new TaskFormFragment();
         frag.setStyle(DialogFragment.STYLE_NORMAL, R.style.Dialog_FullScreen);
         return frag;
@@ -47,8 +49,7 @@ public class TaskFormFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.task_form, container);
-        return view;
+        return inflater.inflate(R.layout.task_form, container);
     }
 
     @Override

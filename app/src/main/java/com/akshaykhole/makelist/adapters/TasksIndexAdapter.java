@@ -49,7 +49,8 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
         taskDescription.setText(task.getText());
 
         String taskDetailsString = new String();
-        taskDetailsString = task.getPriority() + " | " + task.getDueDate() + " | " + task.getAssignedBy();
+        taskDetailsString = "Priority: " + task.getPriority() + " | Due date: " +
+                task.getDueDate() + " | Assigned By: " + task.getAssignedBy();
         taskDetails.setText(taskDetailsString);
 
         taskId.setText(task.getId());

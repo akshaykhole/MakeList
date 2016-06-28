@@ -55,11 +55,22 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
                         tasks.get(position).deleteFromRealm();
                     }
                 });
-                
+
                 Toast.makeText(getApplicationContext(), "SUCCESS!",
                         Toast.LENGTH_SHORT).show();
                 populateTasks();
                 return true;
+            }
+        });
+
+        tasksLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Task t = tasks.get(i);
+
+                FragmentManager fm = getSupportFragmentManager();
+                TaskFormFragment tff = TaskFormFragment.newInstance(new Bundle());
+                tff.show(fm, "task_form");
             }
         });
     }
@@ -72,7 +83,7 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
 
     public void createNewTask(View view) {
         FragmentManager fm = getSupportFragmentManager();
-        TaskFormFragment tff = TaskFormFragment.newInstance();
+        TaskFormFragment tff = TaskFormFragment.newInstance(new Bundle());
         tff.show(fm, "task_form");
     }
 
