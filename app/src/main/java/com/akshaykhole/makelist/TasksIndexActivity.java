@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,9 @@ import io.realm.RealmResults;
 public class TasksIndexActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
     private Realm realm;
     public TasksIndexAdapter tasksIndexAdapter;
+    private ListView tasksLv;
+    private ArrayList<Task> tasksArrayList;
+    private RealmResults<Task> tasks;
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
@@ -37,6 +41,27 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
         setContentView(R.layout.activity_tasks_index);
         configureDatabase();
         populateTasks();
+
+        // Let user delete a task by long pressing on list view item
+        tasksLv = (ListView) findViewById(R.id.tasksIndexListView);
+        tasksLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position,
+                                           long id) {
+
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        tasks.get(position).deleteFromRealm();
+                    }
+                });
+                
+                Toast.makeText(getApplicationContext(), "SUCCESS!",
+                        Toast.LENGTH_SHORT).show();
+                populateTasks();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -53,9 +78,9 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
 
     private void populateTasks() {
         RealmQuery<Task> query = realm.where(Task.class);
-        RealmResults<Task> tasks = query.findAll();
+        tasks = query.findAll();
 
-        ArrayList<Task> tasksArrayList =  new ArrayList<Task>();
+        tasksArrayList =  new ArrayList<Task>();
 
         for(Task t : tasks) {
             tasksArrayList.add(t);
