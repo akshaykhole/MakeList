@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.akshaykhole.makelist.models.Task;
@@ -33,6 +35,7 @@ public class TaskFormFragment extends DialogFragment {
     private DatePicker taskFormDatePicker;
     private Button btnDone;
     private Button btnCancel;
+    private Spinner prioritySpinner;
 
     public TaskFormFragment() { }
 
@@ -53,6 +56,12 @@ public class TaskFormFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String[] priorityListItems = new String[] { "High", "Medium", "Low" };
+        prioritySpinner = (Spinner) view.findViewById(R.id.taskFormPriorityDropdown);
+        ArrayAdapter<String> priorityArrayAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item, priorityListItems);
+        prioritySpinner.setAdapter(priorityArrayAdapter);
+
         btnDone = (Button) view.findViewById(R.id.btnTaskFormDone);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,24 +69,27 @@ public class TaskFormFragment extends DialogFragment {
                 description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
                 taskFormDatePicker = (DatePicker) getDialog().findViewById(R.id.taskFormDatePicker);
 
+                // Logic to set the due date
                 int day = taskFormDatePicker.getDayOfMonth() + 1;
                 int month = taskFormDatePicker.getMonth();
                 int year = taskFormDatePicker.getYear();
-
                 Calendar c = Calendar.getInstance();
                 c.clear();
                 c.set(Calendar.MONTH, month);
                 c.set(Calendar.DAY_OF_MONTH, day);
                 c.set(Calendar.YEAR, year);
-
                 Date dueDate = c.getTime();
 
+                // Logic to get priority
+                String priority = prioritySpinner.getSelectedItem().toString();
+
+                // Create Task object
                 realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
                 Task t = realm.createObject(Task.class);
                 t.setId(UUID.randomUUID().toString());
                 t.setText(description.getText().toString());
-                t.setPriority("low");
+                t.setPriority(priority);
                 t.setAssignedBy("self");
                 t.setDueDate(dueDate);
                 t.setComplete(Boolean.FALSE);
