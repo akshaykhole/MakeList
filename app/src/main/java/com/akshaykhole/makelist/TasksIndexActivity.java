@@ -1,7 +1,11 @@
 package com.akshaykhole.makelist;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +33,7 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
     private ListView tasksLv;
     private ArrayList<Task> tasksArrayList;
     private RealmResults<Task> tasks;
+    final private static int REQUEST_CODE_RECEIVE_SMS = 123;
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
@@ -41,6 +46,7 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
         setContentView(R.layout.activity_tasks_index);
         configureDatabase();
         populateTasks();
+        requestSmsReceivePermission();
 
         // Let user delete a task by long pressing on list view item
         tasksLv = (ListView) findViewById(R.id.tasksIndexListView);
@@ -92,6 +98,7 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
 
     private void populateTasks() {
         RealmQuery<Task> query = realm.where(Task.class);
+        Log.d("POPULATING -->", "Task list");
         tasks = query.findAll();
 
         tasksArrayList =  new ArrayList<Task>();
@@ -106,10 +113,21 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
     }
 
     private void configureDatabase() {
+        Log.d("DATABASE -->", "CONFIGURING...");
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .name("makelist.realm")
                 .build();
+
         Realm.setDefaultConfiguration(realmConfiguration);
         realm = Realm.getDefaultInstance();
+    }
+
+    public void requestSmsReceivePermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECEIVE_SMS);
+
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS }, 123);
+        }
     }
 }
