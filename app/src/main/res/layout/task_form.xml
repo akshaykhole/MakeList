@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/taskFormRootLinearLayout">
+
+
 
     <EditText
         android:layout_width="match_parent"
@@ -12,6 +19,13 @@
         android:ems="10"
         android:id="@+id/editDescriptionInput"
         android:hint="Enter Task Description" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:id="@+id/btnTaskFormSelectDate"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,3 +41,4 @@
         android:id="@+id/btnTaskFormCancel"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
+</ScrollView>

@@ -21,6 +21,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+import io.realm.TaskRealmProxyInterface;
 
 public class TasksIndexActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
     private Realm realm;

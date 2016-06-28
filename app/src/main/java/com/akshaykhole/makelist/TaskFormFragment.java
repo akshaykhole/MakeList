@@ -2,9 +2,11 @@ package com.akshaykhole.makelist;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +27,12 @@ import io.realm.Realm;
  * Created by akshay on 6/26/16.
  */
 
-public class TaskFormFragment extends DialogFragment {
+public class TaskFormFragment extends DialogFragment implements DatePickerFragment.SelectDateFragmentListener {
     private Realm realm;
     private EditText description;
     private Button btnDone;
     private Button btnCancel;
+    private Button btnSelectDate;
 
     public TaskFormFragment() { }
 
@@ -37,6 +40,10 @@ public class TaskFormFragment extends DialogFragment {
         TaskFormFragment frag = new TaskFormFragment();
         frag.setStyle(DialogFragment.STYLE_NORMAL, R.style.Dialog_FullScreen);
         return frag;
+    }
+
+    public void onFinishSelectDate(Calendar c) {
+        Log.d("CALENDER DAY--->", "" + c.get(Calendar.MONTH));
     }
 
     @Override
@@ -49,6 +56,16 @@ public class TaskFormFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnSelectDate = (Button) view.findViewById(R.id.btnTaskFormSelectDate);
+        btnSelectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment dpFrag = new DatePickerFragment();
+                dpFrag.show(getSupportFragmentManager(), "");
+
+            }
+        });
 
         btnDone = (Button) view.findViewById(R.id.btnTaskFormDone);
         btnDone.setOnClickListener(new View.OnClickListener() {
