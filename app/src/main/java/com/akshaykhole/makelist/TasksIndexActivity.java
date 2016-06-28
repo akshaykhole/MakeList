@@ -67,9 +67,12 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Task t = tasks.get(i);
+                Bundle args = new Bundle();
+                args.putString("taskId", t.getId());
+                args.putString("taskToEdit", "true");
 
                 FragmentManager fm = getSupportFragmentManager();
-                TaskFormFragment tff = TaskFormFragment.newInstance(new Bundle());
+                TaskFormFragment tff = TaskFormFragment.newInstance(args);
                 tff.show(fm, "task_form");
             }
         });
