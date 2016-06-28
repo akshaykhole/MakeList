@@ -32,4 +32,10 @@
         android:textSize="12sp"
         android:textStyle="bold"
         android:text="@string/tasks_index_task_details" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskIndexTaskId"
+        android:visibility="gone"/>
 </RelativeLayout>

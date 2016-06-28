@@ -51,25 +51,6 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
         tff.show(fm, "task_form");
     }
 
-    private void createDummyTask() {
-        realm.beginTransaction();
-
-        Task t = realm.createObject(Task.class);
-        t.setId(UUID.randomUUID().toString());
-        t.setText("Fetch bread " + UUID.randomUUID().toString());
-        t.setPriority("low");
-        t.setAssignedBy("self");
-        t.setDueDate(new Date());
-        t.setComplete(Boolean.FALSE);
-        realm.commitTransaction();
-
-        RealmQuery<Task> query = realm.where(Task.class);
-        RealmResults<Task> tasks = query.findAll();
-        for(Task task : tasks) {
-            Log.d("REALM=====>", task.getText());
-        }
-    }
-
     private void populateTasks() {
         RealmQuery<Task> query = realm.where(Task.class);
         RealmResults<Task> tasks = query.findAll();

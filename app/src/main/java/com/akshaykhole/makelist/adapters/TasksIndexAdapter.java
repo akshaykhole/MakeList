@@ -44,12 +44,15 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
 
         TextView taskDescription = (TextView) convertedView.findViewById(R.id.tasks_index_task_description);
         TextView taskDetails = (TextView) convertedView.findViewById(R.id.tasks_index_task_details);
+        TextView taskId = (TextView) convertedView.findViewById(R.id.taskIndexTaskId);
 
         taskDescription.setText(task.getText());
 
         String taskDetailsString = new String();
         taskDetailsString = task.getPriority() + " | " + task.getDueDate() + " | " + task.getAssignedBy();
         taskDetails.setText(taskDetailsString);
+
+        taskId.setText(task.getId());
 
         return convertedView;
     }
