@@ -36,7 +36,6 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks_index);
         configureDatabase();
-        createDummyTask();
         populateTasks();
     }
 
@@ -53,7 +52,6 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
     }
 
     private void createDummyTask() {
-        realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         Task t = realm.createObject(Task.class);
@@ -92,5 +90,6 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
                 .name("makelist.realm")
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
+        realm = Realm.getDefaultInstance();
     }
 }
