@@ -6,7 +6,6 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +49,8 @@ public class TaskFormFragment extends DialogFragment {
         if(editFlag == "true") {
             taskToEdit = Boolean.TRUE;
             taskEditId = args.getString("taskId");
+        } else {
+            taskToEdit = Boolean.FALSE;
         }
 
         TaskFormFragment frag = new TaskFormFragment();
@@ -67,7 +68,6 @@ public class TaskFormFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         // Populate Priority Dropdown
         String[] priorityListItems = new String[] { "High", "Medium", "Low" };
         prioritySpinner = (Spinner) view.findViewById(R.id.taskFormPriorityDropdown);
@@ -76,7 +76,9 @@ public class TaskFormFragment extends DialogFragment {
         prioritySpinner.setAdapter(priorityArrayAdapter);
 
         // Set task details if edit form
-        setTaskDetailsForEditing(view);
+        if(taskToEdit == Boolean.TRUE) {
+            setTaskDetailsForEditing(view);
+        }
 
         // On click listeners
         btnDone = (Button) view.findViewById(R.id.btnTaskFormDone);
@@ -125,6 +127,8 @@ public class TaskFormFragment extends DialogFragment {
                         Toast.LENGTH_SHORT).show();
 
                 // Dismiss dialogue
+                description.setText("");
+                prioritySpinner.setSelection(0);
                 getDialog().dismiss();
             }
         });
@@ -133,6 +137,8 @@ public class TaskFormFragment extends DialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
+                description.setText("");
                 getDialog().dismiss();
 
             }
@@ -161,26 +167,24 @@ public class TaskFormFragment extends DialogFragment {
     }
 
     public void setTaskDetailsForEditing(View view) {
-        if(taskToEdit == Boolean.TRUE) {
-            realm = Realm.getDefaultInstance();
-            RealmQuery<Task> query = realm.where(Task.class);
-            Task task = query.equalTo("id", taskEditId).findFirst();
+        realm = Realm.getDefaultInstance();
+        RealmQuery<Task> query = realm.where(Task.class);
+        Task task = query.equalTo("id", taskEditId).findFirst();
 
-            description = (EditText) view.findViewById(R.id.editDescriptionInput);
-            description.setText(task.getText());
+        description = (EditText) view.findViewById(R.id.editDescriptionInput);
+        description.setText(task.getText());
 
-            taskFormDatePicker = (DatePicker) view.findViewById(R.id.taskFormDatePicker);
-            Date date = task.getDueDate();
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            taskFormDatePicker.updateDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-                    c.get(Calendar.DAY_OF_MONTH) - 1);
+        taskFormDatePicker = (DatePicker) view.findViewById(R.id.taskFormDatePicker);
+        Date date = task.getDueDate();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        taskFormDatePicker.updateDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH) - 1);
 
 
-            String[] priorityListItems = new String[] { "High", "Medium", "Low" };
-            prioritySpinner = (Spinner) view.findViewById(R.id.taskFormPriorityDropdown);
-            int i = Arrays.asList(priorityListItems).indexOf(task.getPriority());
-            prioritySpinner.setSelection(i);
-        }
+        String[] priorityListItems = new String[] { "High", "Medium", "Low" };
+        prioritySpinner = (Spinner) view.findViewById(R.id.taskFormPriorityDropdown);
+        int i = Arrays.asList(priorityListItems).indexOf(task.getPriority());
+        prioritySpinner.setSelection(i);
     }
 }
