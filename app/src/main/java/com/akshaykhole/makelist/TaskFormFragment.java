@@ -2,6 +2,7 @@ package com.akshaykhole.makelist;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import io.realm.Realm;
 public class TaskFormFragment extends DialogFragment {
     private Realm realm;
     private EditText description;
+    private DatePicker taskFormDatePicker;
     private Button btnDone;
     private Button btnCancel;
 
@@ -55,6 +58,19 @@ public class TaskFormFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
+                taskFormDatePicker = (DatePicker) getDialog().findViewById(R.id.taskFormDatePicker);
+
+                int day = taskFormDatePicker.getDayOfMonth() + 1;
+                int month = taskFormDatePicker.getMonth();
+                int year = taskFormDatePicker.getYear();
+
+                Calendar c = Calendar.getInstance();
+                c.clear();
+                c.set(Calendar.MONTH, month);
+                c.set(Calendar.DAY_OF_MONTH, day);
+                c.set(Calendar.YEAR, year);
+
+                Date dueDate = c.getTime();
 
                 realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
@@ -63,7 +79,7 @@ public class TaskFormFragment extends DialogFragment {
                 t.setText(description.getText().toString());
                 t.setPriority("low");
                 t.setAssignedBy("self");
-                t.setDueDate(new Date());
+                t.setDueDate(dueDate);
                 t.setComplete(Boolean.FALSE);
                 realm.commitTransaction();
 
