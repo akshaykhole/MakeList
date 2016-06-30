@@ -50,9 +50,7 @@ public class TasksIndexActivity
     private ArrayList<Task> tasksArrayList;
     private RealmResults<Task> tasks;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-
     private TasksIndexAdapter tasksIndexAdapter;
-
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
@@ -83,7 +81,6 @@ public class TasksIndexActivity
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date dueDate = dateFormat.parse(dueDateStr);
 
-            realm = Realm.getDefaultInstance();
             realm.beginTransaction();
             Task t = realm.createObject(Task.class);
             t.setId(UUID.randomUUID().toString());
@@ -92,15 +89,15 @@ public class TasksIndexActivity
             t.setAssignedBy(smsFrom);
             t.setDueDate(dueDate);
             t.setComplete(Boolean.FALSE);
+
             tasksArrayList.add(t);
             realm.commitTransaction();
         } catch (Exception e){
-            Log.d(TAG + "EXCEPTION->", e.getMessage());
+            Log.d(TAG + "Sms Error->", e.getMessage());
         }
 
         tasksIndexAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,14 +172,14 @@ public class TasksIndexActivity
         tasks = query.findAll();
 
         tasksArrayList =  new ArrayList<Task>();
-
-        for(Task t : tasks) {
-            tasksArrayList.add(t);
+        if(tasks.size() != tasksArrayList.size()) {
+            for(Task t : tasks) {
+                tasksArrayList.add(t);
+            }
+            tasksIndexAdapter = new TasksIndexAdapter(this, tasksArrayList);
+            ListView tasksIndexListView = (ListView) findViewById(R.id.tasksIndexListView);
+            tasksIndexListView.setAdapter(tasksIndexAdapter);
         }
-
-        tasksIndexAdapter = new TasksIndexAdapter(this, tasksArrayList);
-        ListView tasksIndexListView = (ListView) findViewById(R.id.tasksIndexListView);
-        tasksIndexListView.setAdapter(tasksIndexAdapter);
     }
 
     private void configureDatabase() {
