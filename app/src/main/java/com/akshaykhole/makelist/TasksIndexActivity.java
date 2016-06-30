@@ -66,7 +66,6 @@ public class TasksIndexActivity
     };
 
     private void updateTaskList(Intent intent) {
-        Log.d(TAG, "handling sms");
         SmsMessage[] smsMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         SmsMessage smsMessage = smsMessages[0];
         String smsFrom = smsMessage.getOriginatingAddress();
@@ -132,6 +131,7 @@ public class TasksIndexActivity
             }
         });
 
+        // Show the Task form to create or edit on click
         tasksLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -146,6 +146,7 @@ public class TasksIndexActivity
             }
         });
 
+        // Register receiver for listening to incoming msgs
         registerReceiver(broadcastReceiver, new IntentFilter(SMS_RECEIVED));
     }
 
@@ -170,7 +171,6 @@ public class TasksIndexActivity
 
     private void populateTasks() {
         RealmQuery<Task> query = realm.where(Task.class);
-        Log.d("POPULATING -->", "Task list");
         tasks = query.findAll();
 
         tasksArrayList =  new ArrayList<Task>();
@@ -185,7 +185,6 @@ public class TasksIndexActivity
     }
 
     private void configureDatabase() {
-        Log.d("DATABASE -->", "CONFIGURING..");
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .name("makelist.realm")
                 .build();
