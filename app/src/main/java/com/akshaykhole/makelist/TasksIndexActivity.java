@@ -36,15 +36,21 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class TasksIndexActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
+public class TasksIndexActivity
+        extends AppCompatActivity
+        implements DialogInterface.OnDismissListener {
+
+    final private static int REQUEST_CODE_RECEIVE_SMS = 123;
+    final private static String TAG = "**ML**";
+
     private Realm realm;
-    public TasksIndexAdapter tasksIndexAdapter;
     private ListView tasksLv;
     private ArrayList<Task> tasksArrayList;
     private RealmResults<Task> tasks;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-    final private static int REQUEST_CODE_RECEIVE_SMS = 123;
-    final private static String TAG = "**ML**";
+
+    private TasksIndexAdapter tasksIndexAdapter;
+
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
@@ -117,10 +123,11 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
                         tasks.get(position).deleteFromRealm();
                     }
                 });
+                tasksArrayList.remove(position);
+                tasksIndexAdapter.notifyDataSetChanged();
 
-                Toast.makeText(getApplicationContext(), "SUCCESS!",
+                Toast.makeText(getApplicationContext(), "Deleted Task Successfully!",
                         Toast.LENGTH_SHORT).show();
-                populateTasks();
                 return true;
             }
         });
