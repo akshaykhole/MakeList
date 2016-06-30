@@ -25,6 +25,8 @@ import com.akshaykhole.makelist.models.Task;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,10 +79,9 @@ public class TasksIndexActivity
 
             String makelistText = makelistObject.getString("text");
             String makelistPriority = makelistObject.getString("priority");
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
-            Date tomorrow = calendar.getTime();
+            String dueDateStr = makelistObject.getString("dueDate");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date dueDate = dateFormat.parse(dueDateStr);
 
             realm = Realm.getDefaultInstance();
             realm.beginTransaction();
@@ -89,7 +90,7 @@ public class TasksIndexActivity
             t.setText(makelistText);
             t.setPriority(makelistPriority);
             t.setAssignedBy(smsFrom);
-            t.setDueDate(tomorrow);
+            t.setDueDate(dueDate);
             t.setComplete(Boolean.FALSE);
             tasksArrayList.add(t);
             realm.commitTransaction();
