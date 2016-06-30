@@ -51,7 +51,6 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
         populateTasks();
     }
 
-
     // Define SMS receiver Broadcast receiver
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -87,12 +86,13 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
             t.setAssignedBy(smsFrom);
             t.setDueDate(tomorrow);
             t.setComplete(Boolean.FALSE);
+            tasksArrayList.add(t);
             realm.commitTransaction();
         } catch (Exception e){
             Log.d(TAG + "EXCEPTION->", e.getMessage());
         }
 
-        populateTasks();
+        tasksIndexAdapter.notifyDataSetChanged();
     }
 
 
