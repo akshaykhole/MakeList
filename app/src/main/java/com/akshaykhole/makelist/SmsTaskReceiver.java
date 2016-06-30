@@ -19,13 +19,12 @@ import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
-import io.realm.RealmQuery;
 
 /**
  * Created by akshay on 6/28/16.
  */
 public class SmsTaskReceiver extends BroadcastReceiver {
-    private String TAG = "SMS****";
+    private String TAG = "SMS RECEIVER->";
     private Realm realm;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
 
@@ -34,18 +33,10 @@ public class SmsTaskReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if(intent.getAction().equals(SMS_RECEIVED)) {
-            String smsFrom;
-            String smsBody;
-            SmsMessage smsMessage;
-
             SmsMessage[] smsMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
-            smsMessage = smsMessages[0];
-
-            smsFrom = smsMessage.getOriginatingAddress();
-            smsBody = smsMessage.getMessageBody();
-
-            Log.d("SMS--->>", smsFrom);
-            Log.d("SMS--->>", smsBody);
+            SmsMessage smsMessage = smsMessages[0];
+            String smsFrom = smsMessage.getOriginatingAddress();
+            String smsBody = smsMessage.getMessageBody();
 
             try {
                 JSONObject mainObject = new JSONObject(smsBody);
@@ -53,7 +44,6 @@ public class SmsTaskReceiver extends BroadcastReceiver {
 
                 String makelistText = makelistObject.getString("text");
                 String makelistPriority = makelistObject.getString("priority");
-
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DAY_OF_YEAR, 1);
@@ -70,7 +60,7 @@ public class SmsTaskReceiver extends BroadcastReceiver {
                 t.setComplete(Boolean.FALSE);
                 realm.commitTransaction();
             } catch (Exception e){
-                Log.d("EXCEPTION-->", e.getMessage());
+                Log.d(TAG + "EXCEPTION->", e.getMessage());
             }
         }
     }

@@ -113,7 +113,7 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
     }
 
     private void configureDatabase() {
-        Log.d("DATABASE -->", "CONFIGURING...");
+        Log.d("DATABASE -->", "CONFIGURING..");
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .name("makelist.realm")
                 .build();
@@ -127,7 +127,8 @@ public class TasksIndexActivity extends AppCompatActivity implements DialogInter
                 Manifest.permission.RECEIVE_SMS);
 
         if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS }, 123);
+            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS },
+                    REQUEST_CODE_RECEIVE_SMS);
         }
     }
 }

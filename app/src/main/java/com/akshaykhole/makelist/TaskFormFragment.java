@@ -1,7 +1,6 @@
 package com.akshaykhole.makelist;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,7 +32,7 @@ import io.realm.RealmQuery;
 
 public class TaskFormFragment extends DialogFragment {
     private Realm realm;
-    private EditText description;
+    private EditText etDescription;
     private DatePicker taskFormDatePicker;
     private Button btnDone;
     private Button btnCancel;
@@ -70,9 +68,9 @@ public class TaskFormFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        description = (EditText) view.findViewById(R.id.editDescriptionInput);
-        description.setSelection(description.getText().length());
-        description.requestFocus();
+        etDescription = (EditText) view.findViewById(R.id.editDescriptionInput);
+        etDescription.setSelection(etDescription.getText().length());
+        etDescription.requestFocus();
 
         // Populate Priority Dropdown
         String[] priorityListItems = new String[] { "High", "Medium", "Low" };
@@ -91,7 +89,7 @@ public class TaskFormFragment extends DialogFragment {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
+                etDescription = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
                 taskFormDatePicker = (DatePicker) getDialog().findViewById(R.id.taskFormDatePicker);
 
                 // Logic to set the due date
@@ -122,7 +120,7 @@ public class TaskFormFragment extends DialogFragment {
                     t.setId(UUID.randomUUID().toString());
                 }
 
-                t.setText(description.getText().toString());
+                t.setText(etDescription.getText().toString());
                 t.setPriority(priority);
                 t.setAssignedBy("self");
                 t.setDueDate(dueDate);
@@ -133,7 +131,7 @@ public class TaskFormFragment extends DialogFragment {
                         Toast.LENGTH_SHORT).show();
 
                 // Dismiss dialogue
-                description.setText("");
+                etDescription.setText("");
                 prioritySpinner.setSelection(0);
                 getDialog().dismiss();
             }
@@ -143,8 +141,8 @@ public class TaskFormFragment extends DialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                description = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
-                description.setText("");
+                etDescription = (EditText) getDialog().findViewById(R.id.editDescriptionInput);
+                etDescription.setText("");
                 getDialog().dismiss();
 
             }
@@ -177,10 +175,10 @@ public class TaskFormFragment extends DialogFragment {
         RealmQuery<Task> query = realm.where(Task.class);
         Task task = query.equalTo("id", taskEditId).findFirst();
 
-        description = (EditText) view.findViewById(R.id.editDescriptionInput);
-        description.setText(task.getText());
-        description.setSelection(description.getText().length());
-        description.requestFocus();
+        etDescription = (EditText) view.findViewById(R.id.editDescriptionInput);
+        etDescription.setText(task.getText());
+        etDescription.setSelection(etDescription.getText().length());
+        etDescription.requestFocus();
 
         taskFormDatePicker = (DatePicker) view.findViewById(R.id.taskFormDatePicker);
         Date date = task.getDueDate();
