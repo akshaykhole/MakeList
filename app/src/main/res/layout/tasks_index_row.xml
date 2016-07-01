@@ -62,20 +62,6 @@
         android:layout_marginLeft="2dp"
         android:layout_marginBottom="5dp" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/lvTaskDelete"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_below="@id/tasks_index_task_description"-->
-        <!--android:padding="7dip"-->
-        <!--android:textColor="#f7f4f3"-->
-        <!--android:textSize="12sp"-->
-        <!--android:text="Delete"-->
-        <!--android:background="@color/indigo_400"-->
-        <!--android:layout_marginLeft="2dp"-->
-        <!--android:onClick="deleteTask"/>-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

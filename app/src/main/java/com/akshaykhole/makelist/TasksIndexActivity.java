@@ -170,8 +170,8 @@ public class TasksIndexActivity
     private void populateTasks() {
         RealmQuery<Task> query = realm.where(Task.class);
         tasks = query.findAll();
-
         tasksArrayList =  new ArrayList<Task>();
+
         if(tasks.size() != tasksArrayList.size()) {
             for(Task t : tasks) {
                 tasksArrayList.add(t);

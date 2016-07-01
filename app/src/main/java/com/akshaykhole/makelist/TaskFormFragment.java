@@ -122,12 +122,12 @@ public class TaskFormFragment extends DialogFragment {
 
                 t.setText(etDescription.getText().toString());
                 t.setPriority(priority);
-                t.setAssignedBy("self");
+                t.setAssignedBy("Self");
                 t.setDueDate(dueDate);
                 t.setComplete(Boolean.FALSE);
                 realm.commitTransaction();
 
-                Toast.makeText(getActivity(), "SUCCESS!",
+                Toast.makeText(getActivity(), "Task created successfully!",
                         Toast.LENGTH_SHORT).show();
 
                 // Dismiss dialogue

@@ -47,7 +47,7 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
 
         taskDescription.setText(task.getText());
         taskDueIn.setText("Due in " + daysBetween(new Date(), task.getDueDate()) + " days");
-        taskAssignedBy.setText(task.getAssignedBy());
+        taskAssignedBy.setText("Assigned By: " + task.getAssignedBy());
         taskPriority.setText(task.getPriority());
         taskId.setText(task.getId());
 
