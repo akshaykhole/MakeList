@@ -14,8 +14,8 @@
         android:textSize="22sp"
         android:text="@string/tasks_index_task_description"
         android:background="@color/indigo_400"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/lvTaskDueIn"
@@ -28,7 +28,8 @@
         android:textColor="#f7f4f3"
         android:textSize="12sp"
         android:text="Due in XX days"
-        android:background="@color/indigo_400" />
+        android:background="@color/indigo_400"
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:id="@+id/lvTaskAssignedBy"
@@ -41,9 +42,10 @@
         android:padding="7dip"
         android:textColor="#f7f4f3"
         android:textSize="12sp"
-        android:text="Assigned By: 6692378095"
+        android:text="Assigned By: self"
         android:background="@color/indigo_400"
-        android:layout_marginLeft="2dp" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:id="@+id/lvTaskPriority"
@@ -57,16 +59,22 @@
         android:textSize="12sp"
         android:text="High"
         android:background="@color/indigo_400"
-        android:layout_marginLeft="2dp" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="5dp" />
 
-    <Button
-        android:id="@+id/lvTaskDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/tasks_index_task_description"
-        android:background="@drawable/ic_delete_forever_black_24px"
-        android:layout_alignBottom="@+id/lvTaskPriority" />
+    <!--<TextView-->
+        <!--android:id="@+id/lvTaskDelete"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@id/tasks_index_task_description"-->
+        <!--android:padding="7dip"-->
+        <!--android:textColor="#f7f4f3"-->
+        <!--android:textSize="12sp"-->
+        <!--android:text="Delete"-->
+        <!--android:background="@color/indigo_400"-->
+        <!--android:layout_marginLeft="2dp"-->
+        <!--android:onClick="deleteTask"/>-->
 
     <TextView
         android:layout_width="match_parent"
