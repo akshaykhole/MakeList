@@ -7,7 +7,7 @@ Additionally, MakeList allows your friends to create Todos for you by sending yo
 
 Submitted by: Akshay Khole
 
-Time spent: 25 hours spent in total
+Time spent: 30 hours spent in total
 
 ## User Stories
 
