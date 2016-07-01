@@ -6,14 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.akshaykhole.makelist.R;
 import com.akshaykhole.makelist.models.Task;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
