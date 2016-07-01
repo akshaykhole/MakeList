@@ -26,29 +26,29 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
 
     @Override
     public View getView(int position, View convertedView, ViewGroup parent) {
-        realm = Realm.getDefaultInstance();
-        RealmQuery<Task> query = realm.where(Task.class);
-        RealmResults<Task> tasks = query.findAll();
-
-        Task task = tasks.get(position);
-
+//        realm = Realm.getDefaultInstance();
+//        RealmQuery<Task> query = realm.where(Task.class);
+//        RealmResults<Task> tasks = query.findAll();
+//
+//        Task task = tasks.get(position);
+//
         if(convertedView == null) {
             convertedView = LayoutInflater.from(getContext()).inflate(R.layout.tasks_index_row,
                     parent, false);
         }
-
-        TextView taskDescription = (TextView) convertedView.findViewById(R.id.tasks_index_task_description);
-        TextView taskDetails = (TextView) convertedView.findViewById(R.id.tasks_index_task_details);
-        TextView taskId = (TextView) convertedView.findViewById(R.id.taskIndexTaskId);
-
-        taskDescription.setText(task.getText());
-
-        String taskDetailsString = new String();
-        taskDetailsString = "Priority: " + task.getPriority() + " | Due date: " +
-                task.getDueDate() + " | Assigned By: " + task.getAssignedBy();
-        taskDetails.setText(taskDetailsString);
-
-        taskId.setText(task.getId());
+//
+//        TextView taskDescription = (TextView) convertedView.findViewById(R.id.tasks_index_task_description);
+//        TextView taskDetails = (TextView) convertedView.findViewById(R.id.tasks_index_task_details);
+//        TextView taskId = (TextView) convertedView.findViewById(R.id.taskIndexTaskId);
+//
+//        taskDescription.setText(task.getText());
+//
+//        String taskDetailsString = new String();
+//        taskDetailsString = "Priority: " + task.getPriority() + " | Due date: " +
+//                task.getDueDate() + " | Assigned By: " + task.getAssignedBy();
+//        taskDetails.setText(taskDetailsString);
+//
+//        taskId.setText(task.getId());
 
         return convertedView;
     }

@@ -1,37 +1,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="10dp" >
+    android:background="#E8EAF6">
 
     <TextView
         android:id="@+id/tasks_index_task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_vertical"
-        android:padding="2dip"
-        android:textColor="#736F6E"
+        android:padding="7dip"
+        android:textColor="#fcfafa"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:text="@string/tasks_index_task_description" />
+        android:text="@string/tasks_index_task_description"
+        android:background="@color/indigo_400"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
-        android:id="@+id/tasks_index_task_details"
-        android:layout_width="match_parent"
+        android:id="@+id/lvTaskDueIn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/lvTaskDueIn"
         android:layout_below="@id/tasks_index_task_description"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_vertical"
-        android:padding="2dip"
-        android:textColor="#736F6E"
+        android:padding="7dip"
+        android:textColor="#f7f4f3"
         android:textSize="12sp"
-        android:textStyle="bold"
-        android:text="@string/tasks_index_task_details" />
+        android:text="Due in XX days"
+        android:background="@color/indigo_400" />
+
+    <TextView
+        android:id="@+id/lvTaskAssignedBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toRightOf="@id/lvTaskDueIn"
+        android:layout_toEndOf="@id/lvTaskDueIn"
+        android:layout_below="@id/tasks_index_task_description"
+        android:padding="7dip"
+        android:textColor="#f7f4f3"
+        android:textSize="12sp"
+        android:text="Assigned By: 6692378095"
+        android:background="@color/indigo_400"
+        android:layout_marginLeft="2dp" />
+
+    <TextView
+        android:id="@+id/lvTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lvTaskAssignedBy"
+        android:layout_toEndOf="@id/lvTaskAssignedBy"
+        android:layout_below="@id/tasks_index_task_description"
+        android:padding="7dip"
+        android:textColor="#f7f4f3"
+        android:textSize="12sp"
+        android:text="High"
+        android:background="@color/indigo_400"
+        android:layout_marginLeft="2dp" />
+
+    <Button
+        android:id="@+id/lvTaskDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tasks_index_task_description"
+        android:background="@drawable/ic_delete_forever_black_24px"
+        android:layout_alignBottom="@+id/lvTaskPriority" />
 
     <TextView
         android:layout_width="match_parent"
