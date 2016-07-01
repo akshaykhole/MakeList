@@ -28,9 +28,6 @@ The following **optional** features are implemented:
 * [x] Add support for selecting the priority of each todo item (and display in listview item)
 * [x] Tweak the style improving the UI / UX, play with colors, images or backgrounds
 
-I haven't done much with the UI. I have added the floating button for creating new
-Todo, if that counts!
-
 The following **additional** features are implemented:
 
 * [x] Your friends can create Todo's for you by sending you a (simple formatted) text message!
@@ -41,15 +38,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/yc4efvQ.gif' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/McQIDEI.gif' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Todo
 
-* Refactor code for readability, robustness
 * Write tests
-* Optimize certain parts like refreshing list of todo's after data update
 * Test out for different Android versions
 
 Referred:
