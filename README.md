@@ -1,9 +1,8 @@
 # Pre-work - MakeList
 
-MakeList is an Android app that allows building a todo list and basic todo items management
-functionality including adding new items, editing and deleting an existing item.
+MakeList is a simple Android TODO list app.
 
-Additionally, MakeList allows your friends to create Todos for you by sending you a text message!
+Additionally, you can send and receive TODOs via text messages from your contacts!
 
 Submitted by: Akshay Khole
 
@@ -42,15 +41,17 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Todo
+## Upcoming features
 
-* Write tests
-* Test out for different Android versions
+* UI for sending TODO from within the App
+* Background service to monitor SMS having TODOs
+* App icons and UI enhancements to views and forms and splash screen
+* Publish to the App store
+* Unit tests
 
 Referred:
 
-* https://vimeo.com/72475810
-* http://guides.codepath.com/android/Using-Intents-to-Create-Flows
+* Codepath guides and video tutorials
 * Several articles on the Internet, Stackoverflow, Android guides, etc.
 
 ## License
