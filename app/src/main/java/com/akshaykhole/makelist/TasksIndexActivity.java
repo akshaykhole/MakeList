@@ -172,7 +172,7 @@ public class TasksIndexActivity
         tasks = query.findAll();
         tasksArrayList =  new ArrayList<Task>();
 
-        if(tasks.size() != tasksArrayList.size()) {
+        if((tasks.size() == 0) || tasks.size() != tasksArrayList.size()) {
             for(Task t : tasks) {
                 tasksArrayList.add(t);
             }
