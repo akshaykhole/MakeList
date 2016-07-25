@@ -56,7 +56,6 @@ public class SmsListener extends BroadcastReceiver {
                 Log.d(TAG, e.getMessage());
             }
             realm.close();
-            TasksIndexActivity.updateTaskList();
         }
     }
 
