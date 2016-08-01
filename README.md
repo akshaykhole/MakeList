@@ -29,9 +29,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Your friends can create Todo's for you by sending you a (simple formatted) text message!
-      The app monitors incoming SMS messages and if a MakeList message is received, it reads it,
-      parses it and creates a Todo for you.
+* [x] You can receive TODOs via text messages from your friends who want to remind you to do stuff!
 
 ## Video Walkthrough
 
@@ -43,11 +41,12 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Upcoming features
 
-* UI for sending TODO from within the App
-* Background service to monitor SMS having TODOs
-* App icons and UI enhancements to views and forms and splash screen
-* Publish to the App store
-* Unit tests
+* [ ] UI for sending TODOs from within the App
+* [ ] Authorize somebody to send you TODOs
+* [x] Background service to monitor SMSes even when app is closed
+* [ ] App icons and UI enhancements to forms and splash screen
+* [ ] Publish to the App store
+* [ ] Unit tests
 
 Referred:
 
