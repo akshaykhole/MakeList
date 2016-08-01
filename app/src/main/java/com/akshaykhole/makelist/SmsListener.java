@@ -27,6 +27,7 @@ public class SmsListener extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d(TAG, "RECEIVED SMS");
         if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
             configureDatabase(context);
             realm = Realm.getDefaultInstance();
@@ -55,7 +56,7 @@ public class SmsListener extends BroadcastReceiver {
                 t.setDueDate(dueDate);
                 t.setComplete(Boolean.FALSE);
                 realm.commitTransaction();
-
+                Log.d(TAG, "INSERTED SMS");
                 LocalBroadcastManager broadcaster = LocalBroadcastManager.getInstance(context);
                 Intent broadcast_intent = new Intent(SMS_LISTENER_BROADCASTS);
                 broadcast_intent.putExtra(SMS_LISTENER_TASK_RECEIVED, "MAKELIST_SMS_RECEIVED");
