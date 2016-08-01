@@ -8,12 +8,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.provider.Telephony;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,15 +22,7 @@ import android.widget.Toast;
 import com.akshaykhole.makelist.adapters.TasksIndexAdapter;
 import com.akshaykhole.makelist.models.Task;
 
-import org.json.JSONObject;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -51,52 +42,11 @@ public class TasksIndexActivity
     private RealmResults<Task> tasks;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private TasksIndexAdapter tasksIndexAdapter;
+    public BroadcastReceiver smsReceiver;
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
         populateTasks();
-    }
-
-    // Define SMS receiver Broadcast receiver
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            updateTaskList(intent);
-        }
-    };
-
-    private void updateTaskList(Intent intent) {
-        SmsMessage[] smsMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
-        SmsMessage smsMessage = smsMessages[0];
-        String smsFrom = smsMessage.getOriginatingAddress();
-        String smsBody = smsMessage.getMessageBody();
-
-        try {
-            JSONObject mainObject = new JSONObject(smsBody);
-            JSONObject makelistObject = mainObject.getJSONObject("makelist");
-
-            String makelistText = makelistObject.getString("text");
-            String makelistPriority = makelistObject.getString("priority");
-            String dueDateStr = makelistObject.getString("dueDate");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date dueDate = dateFormat.parse(dueDateStr);
-
-            realm.beginTransaction();
-            Task t = realm.createObject(Task.class);
-            t.setId(UUID.randomUUID().toString());
-            t.setText(makelistText);
-            t.setPriority(makelistPriority);
-            t.setAssignedBy(smsFrom);
-            t.setDueDate(dueDate);
-            t.setComplete(Boolean.FALSE);
-
-            tasksArrayList.add(t);
-            realm.commitTransaction();
-        } catch (Exception e){
-            Log.d(TAG + "Sms Error->", e.getMessage());
-        }
-
-        tasksIndexAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -144,21 +94,44 @@ public class TasksIndexActivity
             }
         });
 
-        // Register receiver for listening to incoming msgs
-        registerReceiver(broadcastReceiver, new IntentFilter(SMS_RECEIVED));
+        smsReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String s = intent.getStringExtra(SmsListener.SMS_LISTENER_TASK_RECEIVED);
+                if(s == "MAKELIST_SMS_RECEIVED") {
+                    populateTasks();
+                }
+            }
+        };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver((smsReceiver),
+                new IntentFilter(SmsListener.SMS_LISTENER_BROADCASTS)
+        );
+    }
+
+    @Override
+    protected void onStop() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(smsReceiver);
+        realm.close();
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         realm.close();
-        unregisterReceiver(broadcastReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(smsReceiver);
+        super.onDestroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter(SMS_RECEIVED));
     }
 
     public void createNewTask(View view) {
