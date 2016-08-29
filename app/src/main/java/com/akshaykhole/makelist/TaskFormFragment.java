@@ -43,6 +43,7 @@ public class TaskFormFragment extends DialogFragment {
 
     public TaskFormFragment() { }
 
+    // Configures and returns an object of the fragment type
     public static TaskFormFragment newInstance(Bundle args) {
         String editFlag = args.getString("taskToEdit");
 
