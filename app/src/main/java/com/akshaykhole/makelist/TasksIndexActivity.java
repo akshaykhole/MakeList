@@ -97,7 +97,6 @@ public class TasksIndexActivity
         smsReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
                 String s = intent.getStringExtra(SmsListener.SMS_LISTENER_TASK_RECEIVED);
                 if(s == "MAKELIST_SMS_RECEIVED") {
                     populateTasks();
@@ -138,6 +137,10 @@ public class TasksIndexActivity
         FragmentManager fm = getSupportFragmentManager();
         TaskFormFragment tff = TaskFormFragment.newInstance(new Bundle());
         tff.show(fm, "task_form");
+    }
+
+    public void sendTask(View view) {
+        Log.d(TAG, "Pressed send TODO button");
     }
 
     private void populateTasks() {
