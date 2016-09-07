@@ -40,6 +40,7 @@ public class TaskFormFragment extends DialogFragment {
 
     private static Boolean taskToEdit = Boolean.FALSE;
     private static String taskEditId;
+    private String updateToastMessage = "Task created successfully!";
 
     public TaskFormFragment() { }
 
@@ -80,7 +81,9 @@ public class TaskFormFragment extends DialogFragment {
         prioritySpinner.setAdapter(priorityArrayAdapter);
 
         // Set task details if edit form
+        updateToastMessage = "Task created successfully!";
         if(taskToEdit == Boolean.TRUE) {
+            updateToastMessage = "Task updated successfully!";
             setTaskDetailsForEditing(view);
         }
 
@@ -127,7 +130,7 @@ public class TaskFormFragment extends DialogFragment {
                 t.setComplete(Boolean.FALSE);
                 realm.commitTransaction();
 
-                Toast.makeText(getActivity(), "Task created successfully!",
+                Toast.makeText(getActivity(), updateToastMessage,
                         Toast.LENGTH_SHORT).show();
 
                 // Dismiss dialogue
