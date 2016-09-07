@@ -41,7 +41,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Upcoming features
 
-* [ ] UI for sending TODOs from within the App
+* [ ] UI for sending TODOs from within the App (work in progress in feat/send-todos branch)
 * [ ] Authorize somebody to send you TODOs
 * [x] Background service to monitor SMSes even when app is closed
 * [ ] App icons and UI enhancements to forms and splash screen
