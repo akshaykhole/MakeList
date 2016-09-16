@@ -139,10 +139,8 @@ public class TasksIndexActivity
     }
 
     public void sendTask(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        SendTaskFormFragment tff = SendTaskFormFragment.newInstance(new Bundle());
-        tff.show(fm, "send_task_form");
-        Log.d(TAG, "Pressed send TODO button");
+        Intent intent = new Intent(this, SendTodoActivity.class);
+        startActivity(intent);
     }
 
     private void populateTasks() {

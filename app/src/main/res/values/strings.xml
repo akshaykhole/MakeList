@@ -5,4 +5,5 @@
     <string name="task_form_description_input_hint">Your Task\'s description goes here...</string>
     <string name="task_form_save_button">Save</string>
     <string name="task_form_cancel_button">Cancel</string>
+    <string name="title_activity_send_todo">SendTodoActivity</string>
 </resources>
