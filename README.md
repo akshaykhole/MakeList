@@ -35,16 +35,16 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/McQIDEI.gif' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/a/tLk9S' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Upcoming features
 
-* [ ] UI for sending TODOs from within the App
+* [x] UI for sending TODOs from within the App
 * [ ] Authorize somebody to send you TODOs
 * [x] Background service to monitor SMSes even when app is closed
-* [ ] App icons and UI enhancements to forms and splash screen
+* [x] App icons and UI enhancements to forms and splash screen
 * [ ] Publish to the App store
 * [ ] Unit tests
 
