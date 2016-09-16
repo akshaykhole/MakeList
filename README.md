@@ -35,7 +35,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/a/tLk9S' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
+![alt tag](http://imgur.com/a/tLk9S)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
