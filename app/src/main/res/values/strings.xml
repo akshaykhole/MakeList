@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">MakeList</string>
+    <string name="app_name">MakeList - Create or text-a-TODO </string>
     <string name="tasks_index_task_description">Task Description string goes here</string>
     <string name="tasks_index_task_details">Task details like due date, priority, etc</string>
     <string name="task_form_description_input_hint">Your Task\'s description goes here...</string>
     <string name="task_form_save_button">Save</string>
     <string name="task_form_cancel_button">Cancel</string>
-    <string name="title_activity_send_todo">SendTodoActivity</string>
+    <string name="title_activity_send_todo">Text a TODO</string>
     <string name="btn_send_todo_select_contact">Select contact</string>
     <string name="textViewHintSendTodoForm">Add TODO\'s description here</string>
 </resources>
