@@ -6,7 +6,7 @@ Additionally, you can send and receive TODOs via text messages from your contact
 
 Submitted by: Akshay Khole
 
-Time spent: 30 hours spent in total
+Time spent: 40 hours spent in total
 
 ## User Stories
 
