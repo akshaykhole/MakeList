@@ -40,7 +40,6 @@ public class TasksIndexActivity
     private ListView tasksLv;
     private ArrayList<Task> tasksArrayList;
     private RealmResults<Task> tasks;
-    private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private TasksIndexAdapter tasksIndexAdapter;
     public BroadcastReceiver smsReceiver;
 
@@ -161,6 +160,7 @@ public class TasksIndexActivity
         }
     }
 
+    // Sets up the database
     private void configureDatabase() {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .name("makelist.realm")
@@ -170,6 +170,7 @@ public class TasksIndexActivity
         realm = Realm.getDefaultInstance();
     }
 
+    // Request permissions from user for reading/receiving SMS
     public void requestSmsReceivePermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECEIVE_SMS);
