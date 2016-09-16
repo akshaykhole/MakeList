@@ -37,18 +37,24 @@
             android:spinnerMode="dropdown"
             android:id="@+id/taskFormPriorityDropdown" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_form_save_button"
-            android:id="@+id/btnTaskFormDone"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_form_cancel_button"
-            android:id="@+id/btnTaskFormCancel"
-            android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/task_form_cancel_button"
+                android:id="@+id/btnTaskFormCancel"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/task_form_save_button"
+                android:id="@+id/btnTaskFormDone"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
