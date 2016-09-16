@@ -48,7 +48,7 @@ public class TaskFormFragment extends DialogFragment {
     public static TaskFormFragment newInstance(Bundle args) {
         String editFlag = args.getString("taskToEdit");
 
-        if(editFlag == "true") {
+        if("true" == editFlag) {
             taskToEdit = Boolean.TRUE;
             taskEditId = args.getString("taskId");
         } else {
