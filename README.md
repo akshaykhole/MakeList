@@ -6,7 +6,7 @@ Additionally, you can send and receive TODOs via text messages from your contact
 
 Submitted by: Akshay Khole
 
-Time spent: 30 hours spent in total
+Time spent: 40 hours spent in total
 
 ## User Stories
 
@@ -35,16 +35,16 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/McQIDEI.gif' title='MakeList's Video Walkthrough' width='' alt='Video Walkthrough' />
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/feat/send-todos/codepath_demo_v7.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Upcoming features
 
-* [ ] UI for sending TODOs from within the App (work in progress in feat/send-todos branch)
+* [x] UI for sending TODOs from within the App
 * [ ] Authorize somebody to send you TODOs
 * [x] Background service to monitor SMSes even when app is closed
-* [ ] App icons and UI enhancements to forms and splash screen
+* [x] App icons and UI enhancements to forms and splash screen
 * [ ] Publish to the App store
 * [ ] Unit tests
 

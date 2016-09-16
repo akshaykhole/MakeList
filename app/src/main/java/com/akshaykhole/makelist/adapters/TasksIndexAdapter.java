@@ -39,7 +39,10 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
                     parent, false);
         }
 
-        TextView taskDescription = (TextView) convertedView.findViewById(R.id.tasks_index_task_description);
+        TextView taskDescription = (TextView) convertedView.findViewById(
+                R.id.tasks_index_task_description
+        );
+
         TextView taskDueIn = (TextView) convertedView.findViewById(R.id.lvTaskDueIn);
         TextView taskAssignedBy = (TextView) convertedView.findViewById(R.id.lvTaskAssignedBy);
         TextView taskPriority = (TextView) convertedView.findViewById(R.id.lvTaskPriority);
