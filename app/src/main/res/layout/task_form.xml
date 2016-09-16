@@ -48,13 +48,17 @@
                 android:layout_height="wrap_content"
                 android:text="@string/task_form_cancel_button"
                 android:id="@+id/btnTaskFormCancel"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:background="@color/primary_text_disabled_material_dark"
+                android:layout_marginRight="20pt" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_form_save_button"
                 android:id="@+id/btnTaskFormDone"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/abc_primary_text_disable_only_material_dark" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
