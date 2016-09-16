@@ -12,4 +12,15 @@
     tools:context="com.akshaykhole.makelist.SendTodoActivity"
     tools:showIn="@layout/activity_send_todo">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_send_todo_select_contact"
+        android:id="@+id/btn_select_contact"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="selectContact"/>
 </RelativeLayout>

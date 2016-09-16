@@ -6,4 +6,5 @@
     <string name="task_form_save_button">Save</string>
     <string name="task_form_cancel_button">Cancel</string>
     <string name="title_activity_send_todo">SendTodoActivity</string>
+    <string name="btn_send_todo_select_contact">Select contact</string>
 </resources>
