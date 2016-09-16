@@ -11,20 +11,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SendTodoActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_PHONE_NUMBER = 1;
     String selectedContactNumber = new String();
     private Spinner prioritySpinner;
-    private String taskDescription;
-    private String taskDate;
-    private String taskTime;
-    private String taskPriority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,38 @@ public class SendTodoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Sending TODO to: " + selectedContactNumber , Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                // Fetch values
+                EditText et = (EditText) findViewById(R.id.textViewSendTodoTaskDescription);
+                Button contactNumber = (Button) findViewById(R.id.btn_select_contact);
+                Button selectedDate = (Button) findViewById(R.id.btnSendTodoFormSelectDate);
+                Button selectedTime = (Button) findViewById(R.id.btnSendTodoSelectTime);
+                String selectedPriority = prioritySpinner.getSelectedItem().toString();
+
+                try {
+                    // Build JSON
+                    JSONObject message = new JSONObject();
+                    JSONObject innerObject = new JSONObject();
+
+                    innerObject.put("text", et.getText().toString());
+                    innerObject.put("priority", selectedPriority);
+                    innerObject.put("dueDate", selectedDate.getText().toString());
+
+                    message.put("makelist", innerObject);
+
+                    // Send SMS
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(selectedContactNumber,
+                                                null,
+                                                message.toString(),
+                                                null,
+                                                null);
+                    // Go to main page
+                    Intent intent = new Intent(getApplicationContext(), TasksIndexActivity.class);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    Log.e("SMS sending failed", e.getMessage().toString());
+                }
             }
         });
 
