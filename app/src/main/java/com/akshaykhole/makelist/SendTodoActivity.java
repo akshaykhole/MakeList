@@ -1,5 +1,6 @@
 package com.akshaykhole.makelist;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -7,17 +8,23 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class SendTodoActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_PHONE_NUMBER = 1;
     String selectedContactNumber = new String();
     private Spinner prioritySpinner;
+    private String taskDescription;
+    private String taskDate;
+    private String taskTime;
+    private String taskPriority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,16 @@ public class SendTodoActivity extends AppCompatActivity {
         }
     }
 
+    public void selectDate(View view) {
+        DialogFragment dateFragment = new DatePickerFragment();
+        dateFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void selectTime(View view) {
+        DialogFragment timeFragment = new TimePickerFragment();
+        timeFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SELECT_PHONE_NUMBER && resultCode == RESULT_OK) {
@@ -68,7 +85,8 @@ public class SendTodoActivity extends AppCompatActivity {
             if (cursor != null && cursor.moveToFirst()) {
                 int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 this.selectedContactNumber = cursor.getString(numberIndex);
-                Log.d("MAKELIST-SEND-TODO -> ", selectedContactNumber);
+                Button sendTodoSelectContact = (Button) findViewById(R.id.btn_select_contact);
+                sendTodoSelectContact.setText(selectedContactNumber);
             }
         }
     }
