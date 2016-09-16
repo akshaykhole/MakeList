@@ -35,7 +35,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](http://imgur.com/a/tLk9S)
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/feat/send-todos/codepath_demo_v7.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
