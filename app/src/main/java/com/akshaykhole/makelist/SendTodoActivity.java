@@ -14,6 +14,7 @@ import android.view.View;
 
 public class SendTodoActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_PHONE_NUMBER = 1;
+    String selectedContactNumber = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class SendTodoActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Sending TODO to: " + selectedContactNumber , Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -54,8 +55,8 @@ public class SendTodoActivity extends AppCompatActivity {
             // If the cursor returned is valid, get the phone number
             if (cursor != null && cursor.moveToFirst()) {
                 int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                String number = cursor.getString(numberIndex);
-                Log.d("MAKELIST-SEND-TODO -> ", number);
+                this.selectedContactNumber = cursor.getString(numberIndex);
+                Log.d("MAKELIST-SEND-TODO -> ", selectedContactNumber);
             }
         }
     }
