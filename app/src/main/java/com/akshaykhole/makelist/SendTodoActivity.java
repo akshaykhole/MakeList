@@ -11,17 +11,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class SendTodoActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_PHONE_NUMBER = 1;
     String selectedContactNumber = new String();
+    private Spinner prioritySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_send_todo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Set priority dropdown
+        String[] priorityListItems = new String[] { "High", "Medium", "Low" };
+        prioritySpinner = (Spinner) findViewById(R.id.sendTaskFormPriorityDropdown);
+        ArrayAdapter<String> priorityArrayAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, priorityListItems);
+        prioritySpinner.setAdapter(priorityArrayAdapter);
+        // end set priority dropdown
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

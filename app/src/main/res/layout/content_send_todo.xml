@@ -23,4 +23,50 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="selectContact"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewSendTodoTaskDescription"
+        android:hint="@string/textViewHintSendTodoForm"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/btn_select_contact"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to select date"
+        android:id="@+id/btnSendTodoFormSelectDate"
+        android:layout_below="@+id/textViewSendTodoTaskDescription"
+        android:layout_marginTop="39dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to select time"
+        android:id="@+id/btnSendTodoSelectTime"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnSendTodoFormSelectDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendTaskFormPriorityDropdown"
+        android:layout_below="@+id/btnSendTodoSelectTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:spinnerMode="dropdown" />
 </RelativeLayout>
