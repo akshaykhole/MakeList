@@ -34,8 +34,6 @@ public class TasksIndexActivity
         implements DialogInterface.OnDismissListener {
 
     final private static int REQUEST_CODE_RECEIVE_SMS = 123;
-    final private static int REQUEST_CODE_SEND_SMS = 321;
-    final private static String TAG = "**ML**";
 
     private Realm realm;
     private ListView tasksLv;
@@ -174,17 +172,9 @@ public class TasksIndexActivity
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECEIVE_SMS);
 
-        int permissionCheck2 = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS);
-
         if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS },
                     REQUEST_CODE_RECEIVE_SMS);
-        }
-
-        if(permissionCheck2 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] { Manifest.permission.SEND_SMS },
-                    REQUEST_CODE_SEND_SMS);
         }
     }
 }

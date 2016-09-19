@@ -57,7 +57,7 @@
                 android:text="@string/task_form_save_button"
                 android:id="@+id/btnTaskFormDone"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:textColor="@color/abc_primary_text_disable_only_material_dark" />
         </LinearLayout>
     </LinearLayout>

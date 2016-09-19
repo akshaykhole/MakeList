@@ -13,9 +13,9 @@
         android:textColor="#fcfafa"
         android:textSize="22sp"
         android:text="@string/tasks_index_task_description"
-        android:background="@color/indigo_400"
         android:layout_marginBottom="2dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:background="@color/color400" />
 
     <TextView
         android:id="@+id/lvTaskDueIn"
@@ -28,7 +28,7 @@
         android:textColor="#f7f4f3"
         android:textSize="12sp"
         android:text="Due in XX days"
-        android:background="@color/indigo_400"
+        android:background="@color/color400"
         android:layout_marginBottom="5dp" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:textColor="#f7f4f3"
         android:textSize="12sp"
         android:text="Assigned By: self"
-        android:background="@color/indigo_400"
+        android:background="@color/color400"
         android:layout_marginLeft="2dp"
         android:layout_marginBottom="5dp" />
 
@@ -58,7 +58,7 @@
         android:textColor="#f7f4f3"
         android:textSize="12sp"
         android:text="High"
-        android:background="@color/indigo_400"
+        android:background="@color/color400"
         android:layout_marginLeft="2dp"
         android:layout_marginBottom="5dp" />
 
