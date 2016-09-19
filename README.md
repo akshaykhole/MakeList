@@ -6,7 +6,7 @@ Additionally, you can send and receive TODOs via text messages from your contact
 
 Submitted by: Akshay Khole
 
-Time spent: 40 hours spent in total
+Time spent: 41 hours spent in total
 
 ## User Stories
 
@@ -30,23 +30,24 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] You can receive TODOs via text messages from your friends who want to remind you to do stuff!
+* [x] UI for sending TODOs from within the App
+* [x] Background service to monitor SMSes even when app is closed
+* [x] App icons and UI enhancements to forms
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v10.gif)
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v13.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Upcoming features
+Challenges faced:
 
-* [x] UI for sending TODOs from within the App
-* [ ] Authorize somebody to send you TODOs
-* [x] Background service to monitor SMSes even when app is closed
-* [x] App icons and UI enhancements to forms and splash screen
-* [ ] Publish to the App store
-* [ ] Unit tests
+* Finding right ways for message passing between different components of the app
+* Ensuring database is not initialized unnecessarily
+* Refreshing UI on receiving TODO from a text message
+* Understanding background listeners for incoming text messages
 
 Referred:
 
