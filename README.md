@@ -6,7 +6,7 @@ Additionally, you can send and receive TODOs via text messages from your contact
 
 Submitted by: Akshay Khole
 
-Time spent: 41 hours spent in total
+Time spent: 43 hours spent in total
 
 ## User Stories
 
@@ -33,21 +33,21 @@ The following **additional** features are implemented:
 * [x] UI for sending TODOs from within the App
 * [x] Background service to monitor SMSes even when app is closed
 * [x] App icons and UI enhancements to forms
+* [x] Priority container colored according to its value
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v13.gif)
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v14.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Challenges faced:
 
-* Finding right ways for message passing between different components of the app
-* Ensuring database is not initialized unnecessarily
-* Refreshing UI on receiving TODO from a text message
-* Understanding background listeners for incoming text messages
+ * Finding right ways for message passing between different components of the app
+ * Refreshing UI on receiving TODO from a text message
+ * Settling on the perfect color palette and color combinations
 
 Referred:
 
