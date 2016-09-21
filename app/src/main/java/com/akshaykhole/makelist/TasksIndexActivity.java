@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -81,6 +83,7 @@ public class TasksIndexActivity
         tasksLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("DDDD", "00");
                 Task t = tasks.get(i);
                 Bundle args = new Bundle();
                 args.putString("taskId", t.getId());

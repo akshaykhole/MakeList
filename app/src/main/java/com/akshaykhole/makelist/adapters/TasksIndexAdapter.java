@@ -1,12 +1,15 @@
 package com.akshaykhole.makelist.adapters;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.akshaykhole.makelist.R;
 import com.akshaykhole.makelist.models.Task;
@@ -23,6 +26,7 @@ import io.realm.RealmResults;
 
 public class TasksIndexAdapter extends ArrayAdapter<Task> {
     private Realm realm;
+    final int pos[] = new int[1];
 
     public TasksIndexAdapter(Context context, ArrayList<Task> tasks) {
         super(context, 0, tasks);
@@ -30,6 +34,7 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
 
     @Override
     public View getView(int position, View convertedView, ViewGroup parent) {
+        pos[0] = position;
         realm = Realm.getDefaultInstance();
         RealmQuery<Task> query = realm.where(Task.class);
         RealmResults<Task> tasks = query.findAll();
@@ -63,11 +68,29 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
             taskPriority.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.priorityLow));
         }
 
-//        if(task.getAssignedBy().equals("Self")) {
-//            taskAssignedBy.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selfAssignedTask));
-//        } else {
-//            taskAssignedBy.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.externallyAssignedTask));
-//        }
+        CheckBox taskCompletedCheckbox = (CheckBox) convertedView.findViewById(R.id.taskIndexTaskCompletedCheckbox);
+        taskCompletedCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    // Seems like a hacky way of doing this.
+                    // But OK for this MVP
+                    realm = Realm.getDefaultInstance();
+                    RealmQuery<Task> query = realm.where(Task.class);
+                    RealmResults<Task> tasks = query.findAll();
+                    Task task = tasks.get(pos[0]);
+
+                    realm.beginTransaction();
+                    task.setComplete(Boolean.TRUE);
+                    realm.commitTransaction();
+                }
+            }
+        });
+
+        if(task.getComplete()) {
+            taskDescription.setPaintFlags(taskDescription.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            taskCompletedCheckbox.setChecked(true);
+        }
 
         taskPriority.setText(task.getPriority());
         taskId.setText(task.getId());

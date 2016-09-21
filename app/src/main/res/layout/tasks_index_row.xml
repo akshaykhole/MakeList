@@ -67,4 +67,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/taskIndexTaskId"
         android:visibility="gone"/>
+
+    <CheckBox
+        android:text="Completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lvTaskPriority"
+        android:layout_toRightOf="@+id/lvTaskPriority"
+        android:layout_toEndOf="@+id/lvTaskPriority"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:id="@+id/taskIndexTaskCompletedCheckbox" />
 </RelativeLayout>
