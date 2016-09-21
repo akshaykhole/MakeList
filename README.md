@@ -43,19 +43,19 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-Challenges faced:
+## Challenges faced:
 
  * Finding right ways for message passing between different components of the app
  * Refreshing UI on receiving TODO from a text message
  * Settling on the perfect color palette and color combinations
 
-Upcoming feature:
+## Upcoming features:
 
- * [] Mark TODO as complete and 'strike-through' it's text
+ * Mark TODO as complete and 'strike-through' it's text
 
  ![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/Screen%20Shot%202016-09-21%20at%209.42.49%20AM.png)
 
-Referred:
+## Referred:
 
 * Codepath guides and video tutorials
 * Several articles on the Internet, Stackoverflow, Android guides, etc.
