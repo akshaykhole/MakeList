@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryDark">#2E7D32</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="color400">#66BB6A</color>
+    <color name="colorPrimary">#4527A0</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color400">#0D47A1</color>
+
+    <color name="priorityHigh">#D50000</color>
+    <color name="priorityMedium">#E65100</color>
+    <color name="priorityLow">#00796B</color>
+
+    <color name="selfAssignedTask">#AB47BC</color>
+    <color name="externallyAssignedTask">#4527A0</color>
 </resources>
