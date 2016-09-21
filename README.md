@@ -49,6 +49,12 @@ Challenges faced:
  * Refreshing UI on receiving TODO from a text message
  * Settling on the perfect color palette and color combinations
 
+Upcoming feature:
+
+ * [] Mark TODO as complete and 'strike-through' it's text
+
+ ![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/Screen%20Shot%202016-09-21%20at%209.42.49%20AM.png)
+
 Referred:
 
 * Codepath guides and video tutorials
