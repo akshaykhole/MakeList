@@ -1,6 +1,8 @@
 package com.akshaykhole.makelist.adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +52,23 @@ public class TasksIndexAdapter extends ArrayAdapter<Task> {
 
         taskDescription.setText(task.getText());
         taskDueIn.setText("Due in " + (daysBetween(new Date(), task.getDueDate()) + 1) + " days");
-        taskAssignedBy.setText("Assigned By: " + task.getAssignedBy());
+        taskAssignedBy.setText("From: " + task.getAssignedBy());
+
+        // Set color by priority
+        if(task.getPriority().equals("High")) {
+            taskPriority.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.priorityHigh));
+        } else if(task.getPriority().equals("Medium")) {
+            taskPriority.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.priorityMedium));
+        } else if(task.getPriority().equals("Low")) {
+            taskPriority.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.priorityLow));
+        }
+
+//        if(task.getAssignedBy().equals("Self")) {
+//            taskAssignedBy.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selfAssignedTask));
+//        } else {
+//            taskAssignedBy.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.externallyAssignedTask));
+//        }
+
         taskPriority.setText(task.getPriority());
         taskId.setText(task.getId());
 
