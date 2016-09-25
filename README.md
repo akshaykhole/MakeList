@@ -39,7 +39,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v14.gif)
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v15.gif)
+
+The SMS views show garbled/serialized text messages. These views are intended to demonstrate that the app
+is capable of sending, receiving and interpreting SMS messages. When this app goes to production,
+I will probably delete these messages from the inbox once they are parsed and saved into MakeList's
+database but that is out of scope for purposes of this demo IMHO.
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
