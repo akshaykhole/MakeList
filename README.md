@@ -6,7 +6,7 @@ Additionally, you can send and receive TODOs via text messages from your contact
 
 Submitted by: Akshay Khole
 
-Time spent: 43 hours spent in total
+Time spent: 43.5 hours spent in total
 
 ## User Stories
 
@@ -39,7 +39,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v15.gif)
+![alt tag](https://raw.githubusercontent.com/akshaykhole/MakeList/master/codepath_demo_v16.gif)
 
 The SMS views show garbled/serialized text messages. These views are intended to demonstrate that the app
 is capable of sending, receiving and interpreting SMS messages. When this app goes to production,
